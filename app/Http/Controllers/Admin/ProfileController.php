@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
+use App\Profile;
+
 class ProfileController extends Controller
 {
 	public function edit()
@@ -12,8 +15,22 @@ class ProfileController extends Controller
 		return view('admin.profile.edit');
 	}
 
-	public function update()
+	public function update(Request $request)
 	{
-		return redirect('admin/profile/edit');
+      // Varidationを行う
+      $this->validate($request, Profile::$rules);
+
+      // 既存のプロフィールデータを削除
+      Profile::truncate();
+
+      $profile = new Profile;
+      $form = $request->all();
+
+      unset($form['_token']);
+
+      $profile->fill($form);
+      $profile->save();
+
+      return redirect('admin/profile/edit');
 	}
 }
