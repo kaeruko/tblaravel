@@ -6,7 +6,9 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>シフト新規作成</h2>
-                <form action="{{ action('Admin\AttController@create') }}" method="post" enctype="multipart/form-data">
+
+                {{\Form::model($att, array('action' => 'Admin\AttController@create'))}}
+
 
                     @if (count($errors) > 0)
                         <ul>
@@ -18,13 +20,13 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="title">user_id</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="user_id" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="user_id" value="{{ old('user_id') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="title">タイトル</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="attendance_at" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="attendance_at" value="{{ old('attendance_at') }}">
                         </div>
                     </div>
 

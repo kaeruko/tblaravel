@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Attendance extends Model
 {
 
-  protected $guarded = array('user_id','attendance_at');
+  protected $fillable = array('user_id','attendance_at');
+
+  protected $casts = [
+      'user_id' => 'integer',
+      'attendance_at' => 'date',
+  ];
+
 
   public function getall(){
     $atts = Attendance::all();
@@ -22,7 +28,7 @@ class Attendance extends Model
   {
       return [
           'user_id' => 'required|max:255',
-          'date' => 'required',
+          'attendance_at' => 'required',
       ];
   }
 

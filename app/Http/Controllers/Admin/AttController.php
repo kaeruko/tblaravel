@@ -28,7 +28,8 @@ print("huwahuwa");
 
     public function add()
     {
-      return view('admin.att.create');
+      $att = new Attendance;
+      return view('admin.att.create', ["att" => $att]);
     }
 
 
@@ -40,22 +41,19 @@ print("huwahuwa");
      */
     public function create(ShiftPost $request)
     {
-      // $this->validate($request, Attendance::$rules);
-      $validated = $request->validated();
+        // $this->validate($request, Attendance::$rules);
+        $validated = $request->validated();
 
+        $att = new Attendance;
+        // $att->user_id = $request->input("user_id");
+        // $att->attendance_at = date("Y-m-d H:i:s");
+        $form = $request->all();
+        $att->fill($form);
+        $att->save();
+        logger($att);
 
-      // $att = new Attendance;
-      // $form = $request->all();
-
-
-      // // フォームから送信されてきた_tokenを削除する
-      // unset($form['_token']);
-
-      // // データベースに保存する
-      // $att->fill($form);
-      // $att->save();
-
-      // return redirect('admin/att/index');
+        // データベースに保存する
+        return redirect('admin/att');
 
     }
 
