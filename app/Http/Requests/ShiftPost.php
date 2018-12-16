@@ -25,7 +25,7 @@ class ShiftPost extends FormRequest
     {
         return [
             'user_id' => 'required|max:255',
-            'attendance_at' => 'required',
+            'shift_at' => 'required',
         ];
     }
 }

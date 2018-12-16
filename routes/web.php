@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('news/delete', 'Admin\NewsController@delete')->middleware('auth');
 
 	Route::get('att/create', 'Admin\AttController@add')->middleware('auth');
+	Route::get('att/bstest', 'Admin\AttController@bstest');
 	Route::post('att/create', 'Admin\AttController@create')->middleware('auth');
 
 	Route::get('att', 'Admin\AttController@index')->middleware('auth');

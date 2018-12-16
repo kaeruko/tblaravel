@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getallUsers(){
+      // $users = \App\User::where('active', 1)
+      $users = \App\User::orderBy('id', 'desc')
+                 ->take(10)
+                 ->get();
+      return $users;
+    }
+
+
 }
